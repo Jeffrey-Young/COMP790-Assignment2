@@ -31,11 +31,11 @@
         <Button
             android:layout_width="150dp"
             android:layout_height="match_parent"
-            android:text="Light"/>
+            android:text="Proximity"
+            android:onClick="proximityPress" />
         <TextView
             android:layout_width="230dp"
             android:layout_height="match_parent"
-            android:id="@+id/lightText"
-            android:onClick="lightPress"/>
+            android:id="@+id/proximityText" />
     </LinearLayout>
 </android.support.v7.widget.LinearLayoutCompat>
