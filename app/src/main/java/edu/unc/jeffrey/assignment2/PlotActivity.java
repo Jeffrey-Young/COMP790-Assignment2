@@ -39,8 +39,6 @@ public class PlotActivity extends AppCompatActivity implements SensorEventListen
         if (event.sensor != null) {
             PlotView pv = (PlotView) findViewById(R.id.plotView);
             pv.addPoint(event.values, event.sensor.getType());
-            Log.v("Size", event.values.length + "");
-            Log.v(event.sensor.getName(), event.values[0] + "," + event.values[1] + "," + event.values[2]);
         }
     }
 
