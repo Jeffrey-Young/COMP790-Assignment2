@@ -29,7 +29,7 @@ public class PlotActivity extends AppCompatActivity implements SensorEventListen
 //        Sensor accelerometerSensor = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 //        Sensor proximitySensor = sm.getDefaultSensor(Sensor.TYPE_PROXIMITY);
 
-        sm.registerListener(this, _s, 1000000);
+        sm.registerListener(this, _s, 100000);
       //  sm.registerListener(this, proximitySensor, 1000000);
 
     }

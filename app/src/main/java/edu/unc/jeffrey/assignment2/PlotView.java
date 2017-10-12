@@ -106,9 +106,9 @@ public class PlotView extends View {
             } else if (_sensorType == Sensor.TYPE_PROXIMITY) {
                 ceiling = 5.0f;
             }
-            canvas.drawCircle((canvas.getWidth() * i) / _valuesList.size(), (canvas.getHeight() * _valuesList.get(i)) / ceiling, 5, valueColor);
-            canvas.drawCircle((canvas.getWidth() * i) / _valuesList.size(), (canvas.getHeight() * _meanList.get(i)) / ceiling, 5, valueColor);
-            canvas.drawCircle((canvas.getWidth() * i) / _valuesList.size(), (canvas.getHeight() * _stdDevList.get(i)) / ceiling, 5, valueColor);
+            canvas.drawCircle((canvas.getWidth() * i) / MAX_SIZE, (canvas.getHeight() * _valuesList.get(i)) / ceiling, 5, valueColor);
+            canvas.drawCircle((canvas.getWidth() * i) / MAX_SIZE, (canvas.getHeight() * _meanList.get(i)) / ceiling, 5, valueColor);
+            canvas.drawCircle((canvas.getWidth() * i) / MAX_SIZE, (canvas.getHeight() * _stdDevList.get(i)) / ceiling, 5, valueColor);
             Paint valuePaint = new Paint();
             valuePaint.setARGB(255, 0, 255, 0);
             valuePaint.setStyle(Paint.Style.STROKE);
@@ -124,15 +124,15 @@ public class PlotView extends View {
             stdDevPaint.setStyle(Paint.Style.STROKE);
             stdDevPaint.setStrokeWidth(5f);
             if (i != 0) {
-                canvas.drawLine((canvas.getWidth() * i) / _valuesList.size(), (canvas.getHeight() * _valuesList.get(i)) / ceiling,  previousValueX, previousValueY, valuePaint);
-                canvas.drawLine((canvas.getWidth() * i) / _valuesList.size(), (canvas.getHeight() * _meanList.get(i)) / ceiling,  previousMeanX, previousMeanY, meanPaint);
-                canvas.drawLine((canvas.getWidth() * i) / _valuesList.size(), (canvas.getHeight() * _stdDevList.get(i)) / ceiling,  previousStdDevX, previousStdDevY, stdDevPaint);
+                canvas.drawLine((canvas.getWidth() * i) / MAX_SIZE, (canvas.getHeight() * _valuesList.get(i)) / ceiling,  previousValueX, previousValueY, valuePaint);
+                canvas.drawLine((canvas.getWidth() * i) / MAX_SIZE, (canvas.getHeight() * _meanList.get(i)) / ceiling,  previousMeanX, previousMeanY, meanPaint);
+                canvas.drawLine((canvas.getWidth() * i) / MAX_SIZE, (canvas.getHeight() * _stdDevList.get(i)) / ceiling,  previousStdDevX, previousStdDevY, stdDevPaint);
             }
-            previousValueX = (canvas.getWidth() * i) / _valuesList.size();
+            previousValueX = (canvas.getWidth() * i) / MAX_SIZE;
             previousValueY = (canvas.getHeight() * _valuesList.get(i)) / ceiling;
-            previousMeanX = (canvas.getWidth() * i) / _meanList.size();
+            previousMeanX = (canvas.getWidth() * i) / MAX_SIZE;
             previousMeanY = (canvas.getHeight() * _meanList.get(i)) / ceiling;
-            previousStdDevX = (canvas.getWidth() * i) / _stdDevList.size();
+            previousStdDevX = (canvas.getWidth() * i) / MAX_SIZE;
             previousStdDevY = (canvas.getHeight() * _stdDevList.get(i)) / ceiling;
         }
     }
