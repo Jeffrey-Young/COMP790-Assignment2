@@ -14,34 +14,78 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.33"
+            android:layout_weight="0.30"
             android:text="Value"
             android:textColor="#00FF00"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.33"
+            android:layout_weight="0.30"
             android:text="Mean"
             android:textColor="#0000FF"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.33"
+            android:layout_weight="0.40"
             android:text="Standard Deviation"
             android:textColor="#FF0000"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.2">
+        android:layout_weight="0.05"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.30"
+            android:id="@+id/value"
+            android:textColor="#00FF00"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.30"
+            android:id="@+id/mean"
+            android:textColor="#0000FF"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.40"
+            android:id="@+id/stdDev"
+            android:textColor="#FF0000"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.15">
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/imageView"/>
     </LinearLayout>
-    <edu.unc.jeffrey.assignment2.PlotView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.75"
-        android:id="@+id/plotView"/>
+        android:layout_weight="0.71"
+        android:orientation="horizontal">
+        <edu.unc.jeffrey.assignment2.AxisView
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:id="@+id/yAxis"/>
+        <edu.unc.jeffrey.assignment2.PlotView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/plotView"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.04"
+        android:orientation="vertical">
+        <edu.unc.jeffrey.assignment2.AxisView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/xAxis"/>
+    </LinearLayout>
+
 </android.support.v7.widget.LinearLayoutCompat>

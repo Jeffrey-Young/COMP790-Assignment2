@@ -8,7 +8,9 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,6 +26,27 @@ public class PlotActivity extends AppCompatActivity implements SensorEventListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plot);
 
+        AxisView xAxis = (AxisView) findViewById(R.id.xAxis);
+        AxisView yAxis = (AxisView) findViewById(R.id.yAxis);
+        yAxis.setxAxis(false);
+
+        List xList = new ArrayList<String>();
+        for (int i = 1; i <= 10; i++) {
+            xList.add(i + "");
+        }
+        xAxis.setLabels(xList);
+
+        List yList = new ArrayList<String>();
+        for (int i = 1; i <= 30; i++) {
+            yList.add(i + "");
+        }
+        yAxis.setLabels(yList);
+        xAxis.invalidate();
+        yAxis.invalidate();
+
+
+
+
         SensorManager sm = (SensorManager) getSystemService (Context.SENSOR_SERVICE);
         _s = sm.getDefaultSensor(Integer.parseInt(getIntent().getData().toString()));
 //        Sensor accelerometerSensor = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -32,6 +55,7 @@ public class PlotActivity extends AppCompatActivity implements SensorEventListen
         sm.registerListener(this, _s, 100000);
       //  sm.registerListener(this, proximitySensor, 1000000);
 
+
     }
 
     @Override
@@ -39,6 +63,22 @@ public class PlotActivity extends AppCompatActivity implements SensorEventListen
         if (event.sensor != null) {
             PlotView pv = (PlotView) findViewById(R.id.plotView);
             pv.addPoint(event.values, event.sensor.getType());
+
+            TextView value = (TextView) findViewById(R.id.value);
+            TextView mean = (TextView) findViewById(R.id.mean);
+            TextView stdDev = (TextView) findViewById(R.id.stdDev);
+
+            if (pv._valuesList.size() != 0) {
+                value.setText(pv._valuesList.get(pv._valuesList.size() - 1) + "");
+            }
+
+            if (pv._meanList.size() != 0) {
+                mean.setText(pv._meanList.get(pv._meanList.size() - 1) + "");
+            }
+
+            if (pv._stdDevList.size() != 0) {
+                stdDev.setText(pv._stdDevList.get(pv._stdDevList.size() - 1) + "");
+            }
         }
     }
 

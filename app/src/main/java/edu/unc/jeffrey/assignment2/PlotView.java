@@ -45,7 +45,7 @@ public class PlotView extends View {
         _sensorType = sensorType;
         if (_sensorType == Sensor.TYPE_ACCELEROMETER) {
             _valuesList.add((float) Math.sqrt((toAdd[0] * toAdd[0]) + (toAdd[1] * toAdd[1]) + (toAdd[2] * toAdd[2])));
-            Log.v("value", _valuesList.get(_valuesList.size() - 1) + "");
+           Log.v("value", _valuesList.get(_valuesList.size() - 1) + "");
         }
         else if (_sensorType == Sensor.TYPE_PROXIMITY) {
             _valuesList.add(toAdd[0]);
@@ -71,16 +71,16 @@ public class PlotView extends View {
 
     private void computeStandardDeviation() {
         if (_stdDevList.size() < 5) {
-            _stdDevList.add(_valuesList.get(_valuesList.size() - 1));
-            Log.v("orig std dev", _valuesList.get(_valuesList.size() - 1) + "");
+            _stdDevList.add(0f);
+            //Log.v("orig std dev", _valuesList.get(_valuesList.size() - 1) + "");
         } else {
             float val1 = (float) Math.pow(_valuesList.get(_valuesList.size() - 1) - _meanList.get(_meanList.size() - 1), 2);
             float val2 = (float) Math.pow(_valuesList.get(_valuesList.size() - 2) - _meanList.get(_meanList.size() - 1), 2);
             float val3 = (float) Math.pow(_valuesList.get(_valuesList.size() - 3) - _meanList.get(_meanList.size() - 1), 2);
 
             float sum = val1 + val2 + val3;
-            _stdDevList.add((float) Math.sqrt(sum / 2) + 9.81f);
-            Log.v("Std Dev", Math.sqrt(sum / 2) + "");
+            _stdDevList.add((float) Math.sqrt(sum / 2)); // + 9.81f);
+           // Log.v("Std Dev", Math.sqrt(sum / 2) + "");
         }
         if (_stdDevList.size() == MAX_SIZE){
             _stdDevList.remove(0);
@@ -102,7 +102,7 @@ public class PlotView extends View {
         for (int i = 0; i < _valuesList.size(); i++) {
             float ceiling = 0;
             if (_sensorType == Sensor.TYPE_ACCELEROMETER) {
-                ceiling = 27.0f;
+                ceiling = 30.0f;
             } else if (_sensorType == Sensor.TYPE_PROXIMITY) {
                 ceiling = 5.0f;
             }
