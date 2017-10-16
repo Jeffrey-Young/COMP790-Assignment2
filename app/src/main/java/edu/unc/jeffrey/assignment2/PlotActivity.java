@@ -7,7 +7,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -20,6 +20,7 @@ import java.util.List;
 public class PlotActivity extends AppCompatActivity implements SensorEventListener {
 
     Sensor _s;
+    ImageView _image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,8 @@ public class PlotActivity extends AppCompatActivity implements SensorEventListen
         yAxis.setLabels(yList);
         xAxis.invalidate();
         yAxis.invalidate();
+
+        _image = (ImageView) findViewById(R.id.imageView);
 
 
 
@@ -70,6 +73,21 @@ public class PlotActivity extends AppCompatActivity implements SensorEventListen
 
             if (pv._valuesList.size() != 0) {
                 value.setText(pv._valuesList.get(pv._valuesList.size() - 1) + "");
+                if (pv._valuesList.get(pv._valuesList.size() - 1) > 20 && event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+                    _image.setImageResource(R.drawable.lotsoffireworks);
+                } else if (pv._valuesList.get(pv._valuesList.size() - 1) > 15 && event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+                    _image.setImageResource(R.drawable.fireworks);
+                } else if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER){
+                    _image.setImageResource(R.drawable.missile);
+
+                }
+
+                if (pv._valuesList.get(pv._valuesList.size() - 1) == 5 && event.sensor.getType() == Sensor.TYPE_PROXIMITY) {
+                    _image.setImageResource(R.drawable.smallhand);
+                }  else if (event.sensor.getType() == Sensor.TYPE_PROXIMITY){
+                    _image.setImageResource(R.drawable.largehand);
+
+                }
             }
 
             if (pv._meanList.size() != 0) {
