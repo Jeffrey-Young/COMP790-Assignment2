@@ -55,7 +55,7 @@ public class PlotActivity extends AppCompatActivity implements SensorEventListen
 //        Sensor accelerometerSensor = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 //        Sensor proximitySensor = sm.getDefaultSensor(Sensor.TYPE_PROXIMITY);
 
-        sm.registerListener(this, _s, 100000);
+        sm.registerListener(this, _s, 500000);
       //  sm.registerListener(this, proximitySensor, 1000000);
 
 
@@ -63,6 +63,15 @@ public class PlotActivity extends AppCompatActivity implements SensorEventListen
 
     @Override
     public void onSensorChanged(SensorEvent event) {
+        if (event.sensor.getType() == Sensor.TYPE_PROXIMITY) {
+            AxisView yAxis = (AxisView) findViewById(R.id.yAxis);
+            List yList = new ArrayList<String>();
+            for (int i = 1; i <= 5; i++) {
+                yList.add(i + "");
+            }
+            yAxis.setLabels(yList);
+            yAxis.invalidate();
+        }
         if (event.sensor != null) {
             PlotView pv = (PlotView) findViewById(R.id.plotView);
             pv.addPoint(event.values, event.sensor.getType());
